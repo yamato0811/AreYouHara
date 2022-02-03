@@ -1,9 +1,11 @@
+from torch import minimum
 import streamlit as st
 from PIL import Image, ImageOps
 import numpy as np
 from keras_facenet import FaceNet
 
-from image_utils import distance_to_similarity
+from utils import *
+from dataloader import Dataloader
 
 
 st.title('Similarity with Hara')
@@ -12,8 +14,7 @@ st.write("早速あなたの顔の画像をアップロードしてみましょ�
 uploaded_file = st.file_uploader('Choose a image file')
 
 facenet = FaceNet()
-
-embeddings_hara = np.load('embeddings_hara.npy') # 顔ベクトルの読み込み
+dataloader = Dataloader()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert('RGB')
@@ -24,22 +25,36 @@ if uploaded_file is not None:
 
     # 顔が画像中に存在しないとき
     if len(extracts) < 1:
-        st.subheader('Face detection faild')
+        st.header('Face detection faild')
+        st.image(
+            img_array, 
+            use_column_width=True
+        )
     else:
         max_extract = max(extracts, key=lambda x:x['box'][2]*x['box'][3]) # もっとも大きい顔を取得
 
         embed_img = max_extract['embedding']
 
-        distance = facenet.compute_distance(embeddings_hara, embed_img)
+        distances = [(facenet.compute_distance(e, embed_img), p) for e, p in dataloader]
+        distance, path = min(distances)
         similarity = distance_to_similarity(distance)
         st.subheader(f'Similarity : {round(similarity)} %')
         st.text(f'distance : {distance}')
 
-        # 切り取った顔画像を取得
-        x,y,width,hight = max_extract['box']
-        img_array = img_array[y:y+hight, x:x+width]
+        img_array = crop(img_array, max_extract['box'])
 
-    st.image(
-        img_array, caption='upload images',
-        use_column_width=True
-    )
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.header("Upload Image")
+            st.image(
+                img_array, 
+                use_column_width=True
+            )
+
+        with col2:
+            st.header("Most Similar Hara")
+            st.image(
+                dataloader.load_img(path), 
+                use_column_width=True
+            )
