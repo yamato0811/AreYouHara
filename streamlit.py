@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 import streamlit as st
 from PIL import Image, ImageOps
 import numpy as np
@@ -18,7 +19,7 @@ dataloader = Dataloader()
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert('RGB')
     image = ImageOps.exif_transpose(image)  # 画像を適切な向きに補正する
-    image = resize(image, Image)
+    image = resize(image)
 
     img_array = np.array(image)
 
@@ -36,7 +37,7 @@ if uploaded_file is not None:
 
         embed_img = max_extract['embedding']
 
-        distances = [(facenet.compute_distance(e, embed_img), p) for e, p in dataloader]
+        distances = [(facenet.compute_distance(e, embed_img), p) for e, p in dataloader] # hara dataset内のすべての画像と距離を計算
         distance, path = min(distances)
         similarity = distance_to_similarity(distance)
         st.subheader(f'Similarity : {round(similarity)} %')
@@ -44,18 +45,20 @@ if uploaded_file is not None:
 
         img_array = crop(img_array, max_extract['box'])
 
+        uploaded_img, picked_img = adjust_img_margin(img_array, dataloader.load_img(path))
+
         col1, col2 = st.columns(2)
 
         with col1:
             st.header("Upload Image")
             st.image(
-                img_array, 
+                uploaded_img, 
                 use_column_width=True
             )
 
         with col2:
             st.header("Most Similar Hara")
             st.image(
-                dataloader.load_img(path), 
+                picked_img, 
                 use_column_width=True
             )
