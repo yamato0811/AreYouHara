@@ -11,7 +11,7 @@ from dataloader import Dataloader
 st.title('Similarity with Hara')
 st.write("早速あなたの顔の画像をアップロードしてみましょう")
 
-uploaded_file = st.file_uploader('Choose a image file')
+uploaded_file = st.file_uploader('Choose a image file', type=['jpg','jpeg','png'])
 
 facenet = FaceNet()
 dataloader = Dataloader()
