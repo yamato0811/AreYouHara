@@ -52,25 +52,25 @@ def adjust_img_margin(uimg, pimg, size=(500,625)): # uploaded_img, picked_hara_i
     u_width, u_height = uimg.size
     p_width, p_height = pimg.size
 
-    Transparent = (0,0,0,0)  # 透明色
+    TRANSPARENT = (0,0,0,0)  # 透明色
 
     # y-axis
     if u_height > p_height:
-        pane = Image.new('RGBA', (p_width, u_height), Transparent)
+        pane = Image.new('RGBA', (p_width, u_height), TRANSPARENT)
         pane.paste(pimg, (0, int((u_height-p_height)/2)))
         pimg = pane
     elif p_height > u_height:
-        pane = Image.new('RGBA', (u_width, p_height), Transparent)
+        pane = Image.new('RGBA', (u_width, p_height), TRANSPARENT)
         pane.paste(uimg, (0, int((p_height-u_height)/2)))
         uimg = pane
     
     # x-axis
     if u_width > p_width:
-        pane = Image.new('RGBA', (u_width, p_height), Transparent)
+        pane = Image.new('RGBA', (u_width, p_height), TRANSPARENT)
         pane.paste(pimg, ((int((u_width-p_width)/2)), 0))
         pimg = pane
     elif p_width > u_width:
-        pane = Image.new('RGBA', (p_width, u_height), Transparent)
+        pane = Image.new('RGBA', (p_width, u_height), TRANSPARENT)
         pane.paste(uimg, ((int((p_width-u_width)/2)), 0))
         uimg = pane
 
