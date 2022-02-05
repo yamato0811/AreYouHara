@@ -7,14 +7,22 @@ from keras_facenet import FaceNet
 from utils import *
 from dataloader import Dataloader
 
+@st.cache(allow_output_mutation=True)
+def load_facenet():
+    return FaceNet()
+
+@st.cache
+def load_dataloader():
+    return Dataloader()
+
 
 st.title('Similarity with Hara')
 st.write("早速あなたの顔の画像をアップロードしてみましょう")
 
 uploaded_file = st.file_uploader('Choose a image file', type=['jpg','jpeg','png'])
 
-facenet = FaceNet()
-dataloader = Dataloader()
+facenet = load_facenet()
+dataloader = load_dataloader()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert('RGB')
