@@ -49,7 +49,7 @@ if uploaded_file is not None:
         distance, path = min(distances)
         similarity = distance_to_similarity(distance)
         st.subheader(f'Similarity : {round(similarity)} %')
-        st.text(f'distance : {distance}')
+        st.text(f'distance : {round(distance, 2)}')
 
         img_array = crop(img_array, max_extract['box'])
 
