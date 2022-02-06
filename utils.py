@@ -21,7 +21,7 @@ def resize(img, width=960, height=540):
         img = img.resize((img.width//2,img.height//2),Image.BICUBIC)
     return img
 
-def keepAspectResize(image, size):
+def _keepAspectResize(image, size):
 
     # サイズを幅と高さにアンパック
     width, height = size
@@ -46,8 +46,8 @@ def keepAspectResize(image, size):
 def adjust_img_margin(uimg, pimg, size=(500,625)): # uploaded_img, picked_hara_img
     uimg = Image.fromarray(uimg)
     pimg = Image.fromarray(pimg)
-    uimg = keepAspectResize(uimg, size)
-    pimg = keepAspectResize(pimg, size)
+    uimg = _keepAspectResize(uimg, size)
+    pimg = _keepAspectResize(pimg, size)
     
     u_width, u_height = uimg.size
     p_width, p_height = pimg.size
