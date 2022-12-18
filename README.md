@@ -3,7 +3,7 @@
 ## Introdaction
 You can calculate the similarity between the uploaded image and Hara's face.
 
-Demo application : https://share.streamlit.io/yamato0811/areyouhara/main/streamlit.py
+Demo application : 
 
 Main library :
 - [Streamlit](https://streamlit.io/)
