@@ -31,7 +31,7 @@ if uploaded_file is not None:
     image = resize(image)
 
     img_array = np.array(image)
-    extracts = facenet.extract(img_array)
+    extracts = facenet.extract(img_array) # 顔領域を抽出
 
     if len(extracts) < 1:
     # 顔が画像中に存在しないとき
@@ -41,12 +41,12 @@ if uploaded_file is not None:
             use_column_width=True
         )
     else:
-        max_extract = max(extracts, key=lambda x:x['box'][2]*x['box'][3]) # もっとも大きい顔を取得
-        embed_img = max_extract['embedding']
+        max_extract = max(extracts, key=lambda x:x['box'][2]*x['box'][3]) # もっとも大きい顔を取得(複数の顔が存在する場合がある)
+        embed_img = max_extract['embedding'] # 512次元の特徴を取得
 
         distances = [(facenet.compute_distance(e, embed_img), p) for e, p in dataloader] # hara dataset内のすべての画像と距離を計算
         distance, path = min(distances)
-        similarity = distance_to_similarity(distance)
+        similarity = distance_to_similarity(distance) # 距離を類似度に変換
         
         # 判定結果
         if similarity > 90:
@@ -56,7 +56,7 @@ if uploaded_file is not None:
         st.text(f'Similarity : {round(similarity)} %')
 
         img_array = crop(img_array, max_extract['box'])
-        uploaded_img, picked_img = adjust_img_margin(img_array, dataloader.load_img(path))
+        uploaded_img, picked_img = adjust_img_margin(img_array, dataloader.load_img(path)) # 表示の際に適切なマージンがつくよう調整
 
         col1, col2 = st.columns(2)
         with col1:
