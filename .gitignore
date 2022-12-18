@@ -1,0 +1,6 @@
+hara-imgs/
+.DS_Store
+.vscode/
+streamlit_env
+__pycache__
+make_dataset.py
