@@ -4,7 +4,7 @@ from PIL import Image, ImageOps
 import numpy as np
 from keras_facenet import FaceNet
 
-from utils import *
+from utils import distance_to_similarity, crop, resize, adjust_img_margin
 from dataloader import Dataloader
 
 @st.cache(allow_output_mutation=True)
@@ -14,9 +14,6 @@ def load_facenet():
 def load_dataloader():
     return Dataloader()
 
-facenet = load_facenet()
-dataloader = load_dataloader()
-
 # CSSの読み込み
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -24,6 +21,9 @@ with open('style.css') as f:
 st.title('Similarity with HARA')
 st.write("早速あなたの顔の画像をアップロードしてみましょう")
 uploaded_file = st.file_uploader('Choose a image file', type=['jpg','jpeg','png'])
+
+facenet = load_facenet()
+dataloader = load_dataloader()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert('RGB')
