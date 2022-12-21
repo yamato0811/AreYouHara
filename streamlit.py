@@ -7,6 +7,10 @@ from keras_facenet import FaceNet
 from utils import distance_to_similarity, crop, resize, adjust_img_margin
 from dataloader import Dataloader
 
+st.set_page_config(
+    page_title="AreYouHara"
+)
+
 @st.cache(allow_output_mutation=True)
 def load_facenet():
     return FaceNet()
@@ -18,8 +22,16 @@ def load_dataloader():
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.title('Similarity with HARA')
-st.write("早速あなたの顔の画像をアップロードしてみましょう")
+col1, col2 = st.columns([5, 1])
+with col1:
+    st.title('Are You Hara')
+    st.write('あなたの顔がハラかどうか判定します')
+    st.write('早速あなたの顔の画像をアップロードしてみましょう')
+with col2:
+    hara_image = Image.open('hara_data/Hara.JPG')
+    hara_image = ImageOps.exif_transpose(hara_image)
+    st.image(hara_image, caption='ハラ', width=100)
+
 uploaded_file = st.file_uploader('Choose a image file', type=['jpg','jpeg','png'])
 
 facenet = load_facenet()
