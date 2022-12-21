@@ -3,3 +3,29 @@ div.css-183lzff.eyqtai90 {
   text-align: center;
   font-family: Arial Black, Helvetica, sans-serif;
 }
+
+/* ツイートボタン */
+div.css-v37k9u.e16nr0p30 > .tweet-btn {
+  margin-bottom: 10px;
+  width: 100px;
+  margin-left: auto;
+}
+div.css-v37k9u.e16nr0p30 > .tweet-btn > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: 2px solid #1DA1F2;
+  border-radius: 5px;
+  padding: 2px 5px;
+  transition: .3s;
+}
+div.css-v37k9u.e16nr0p30 > .tweet-btn > a:hover {
+  transform: scale(1.1);
+}
+div.css-v37k9u.e16nr0p30 > .tweet-btn > a > p {
+  margin-bottom: 0;
+  margin-left: 5px;
+  font-weight: 700;
+}

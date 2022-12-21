@@ -55,6 +55,18 @@ if uploaded_file is not None:
             st.text('You are not HARA😞😞😞')
         st.text(f'Similarity : {round(similarity)} %')
 
+        # Twitterシェアボタン
+        twitter_btn = f"""
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+        <div class="tweet-btn">
+            <a href="https://twitter.com/share?text=私とハラの類似度は%20{ str(round(similarity)) }%25%20でした%0a&url=https://share.streamlit.io/&hashtags=AreYouHara" id="tweet">
+                <i class="fa-brands fa-twitter"></i>
+                <p>ツイート</p>
+            </a>
+        </div>
+        """
+        st.write(twitter_btn, unsafe_allow_html=True)
+
         img_array = crop(img_array, max_extract['box'])
         uploaded_img, picked_img = adjust_img_margin(img_array, dataloader.load_img(path)) # 表示の際に適切なマージンがつくよう調整
 
