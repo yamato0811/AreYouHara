@@ -49,7 +49,7 @@ if uploaded_file is not None:
         similarity = distance_to_similarity(distance) # 距離を類似度に変換
         
         # 判定結果
-        if similarity > 90:
+        if similarity == 100:
             st.text('You are HARA🎉🎉🎉')
         else:
             st.text('You are not HARA😞😞😞')
