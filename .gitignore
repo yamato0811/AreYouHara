@@ -3,4 +3,3 @@ hara-imgs/
 .vscode/
 streamlit_env
 __pycache__
-make_dataset.py
