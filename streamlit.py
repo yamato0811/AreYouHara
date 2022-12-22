@@ -30,7 +30,7 @@ with col1:
 with col2:
     hara_image = Image.open('hara_data/Hara.JPG')
     hara_image = ImageOps.exif_transpose(hara_image)
-    st.image(hara_image, caption='ハラ', width=100)
+    st.image(hara_image, caption='Hara', width=100)
 
 uploaded_file = st.file_uploader('Choose a image file', type=['jpg','jpeg','png'])
 
