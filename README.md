@@ -1,9 +1,7 @@
 # AreYouHara
-
-## Introdaction
 You can calculate the similarity between the uploaded image and Hara's face.
 
-Demo application : https://areyouhara.streamlit.app/
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
 
 Main library :
 - [Streamlit](https://streamlit.io/)
