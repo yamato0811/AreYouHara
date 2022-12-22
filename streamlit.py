@@ -71,7 +71,7 @@ if uploaded_file is not None:
         twitter_btn = f"""
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
         <div class="tweet-btn">
-            <a href="https://twitter.com/share?text=私とハラの類似度は%20{ str(round(similarity)) }%25%20でした%0a&url=https://areyouhara.streamlit.app/&hashtags=AreYouHara" id="tweet">
+            <a href="https://twitter.com/share?text=私とハラの類似度は%20{ str(round(similarity)) }%25%20でした%0a&url=https://areyouhara.streamlit.app/&hashtags=AreYouHara&via=yamato_hara">
                 <i class="fa-brands fa-twitter"></i>
                 <p>ツイート</p>
             </a>
