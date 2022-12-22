@@ -25,8 +25,8 @@ with open('style.css') as f:
 col1, col2 = st.columns([5, 1])
 with col1:
     st.title('Are You Hara')
-    st.write('あなたの顔がハラかどうか判定します')
-    st.write('早速あなたの顔の画像をアップロードしてみましょう')
+    st.write('あなたの顔がハラかどうか判定します  \n 早速あなたの顔の画像をアップロードしてみましょう')
+    st.markdown('[Qiita]()  [GitHub](https://github.com/yamato0811/AreYouHara)')
 with col2:
     hara_image = Image.open('hara_data/Hara.JPG')
     hara_image = ImageOps.exif_transpose(hara_image)
@@ -71,7 +71,7 @@ if uploaded_file is not None:
         twitter_btn = f"""
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
         <div class="tweet-btn">
-            <a href="https://twitter.com/share?text=私とハラの類似度は%20{ str(round(similarity)) }%25%20でした%0a&url=https://share.streamlit.io/&hashtags=AreYouHara" id="tweet">
+            <a href="https://twitter.com/share?text=私とハラの類似度は%20{ str(round(similarity)) }%25%20でした%0a&url=https://areyouhara.streamlit.app/&hashtags=AreYouHara" id="tweet">
                 <i class="fa-brands fa-twitter"></i>
                 <p>ツイート</p>
             </a>
