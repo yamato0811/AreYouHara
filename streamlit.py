@@ -26,7 +26,7 @@ col1, col2 = st.columns([5, 1])
 with col1:
     st.title('Are You Hara')
     st.write('あなたの顔がハラかどうか判定します  \n 早速あなたの顔の画像をアップロードしてみましょう')
-    st.markdown('[Qiita]()  [GitHub](https://github.com/yamato0811/AreYouHara)')
+    st.markdown('[Qiita](https://qiita.com/yamato0811/items/600a8ccd8143aecab297)  [GitHub](https://github.com/yamato0811/AreYouHara)')
 with col2:
     hara_image = Image.open('hara_data/Hara.JPG')
     hara_image = ImageOps.exif_transpose(hara_image)
